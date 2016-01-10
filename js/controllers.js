@@ -104,83 +104,6 @@ function($scope, $http, $localStorage, $timeout, $firebaseObject, $firebaseArray
 			return d.getFullYear() + "" + ('0' + (d.getMonth() + 1)).slice(-2) + "" + ('0' + d.getDate()).slice(-2);
 		};
 
-		$scope.checkedIn = function(x) {
-			if ($scope.$storage.guestsList[x].checkedIn == true) {
-			} else {
-				$scope.$storage.guestsList[x].checkedIn = true;
-				var d = new Date();
-				var ds = d.toLocaleTimeString() + " on " + (d.getMonth() + 1) + "/" + d.getDate() + "/" + d.getFullYear();
-				$scope.$storage.guestsList[x].btnText = 'Checked in ' + ds;
-				$scope.$storage.guestsList[x].guestStatus = 'Checked in ' + ds;
-			}
-		};
-
-		$scope.backUpTxt = function() {
-			if ($scope.backUp) {
-				return 'Hide Backup list';
-				;
-			} else {
-				return 'View Backup list';
-			}
-		};
-
-		$scope.backUp = false;
-		$scope.backUpBtn = function() {
-			$scope.backUp = !$scope.backUp;
-		};
-		//
-		// Import/Export
-		// All event lists: Previous list
-
-		// Generate ticket numbers sequencially
-		$scope.generateTicketNums = function() {
-			if ($scope.$storage.totalTickets.length <= 0) {
-				alert("You must enter the number of tickets to generate");
-			} else {
-				$scope.dataFieldNum = "";
-				if ($scope.$storage.ticketDigits <= 0) {
-					$scope.$storage.ticketDigits = 5;
-				} else if ($scope.$storage.ticketDigits >= 10) {
-					$scope.$storage.ticketDigits = 10;
-				} else {
-					$scope.$storage.ticketDigits = $scope.$storage.ticketDigits;
-				}
-				var numbDigits = $scope.$storage.ticketDigits - $scope.$storage.prefix.length;
-				var firstNum = " ";
-				while (firstNum.length > numbDigits || firstNum.length < numbDigits) {
-					firstNum = parseInt(Math.random().toString().slice(2, numbDigits + 2));
-				}
-				for (var i = 0; i < $scope.$storage.totalTickets; i++) {
-					$scope.dataFieldNum = ($scope.$storage.prefix + "" + (firstNum + 1)) + " ," + $scope.dataFieldNum;
-					firstNum--;
-				}
-				// Clear data inputted by user
-				$scope.$storage.ticketDigits = '';
-				$scope.$storage.prefix = '';
-				$scope.$storage.totalTickets = '';
-			}
-		};
-
-		$scope.addPastedExcel = function() {
-			var rows = $scope.dataFieldExcel.split('\n');
-			var obj = [];
-			for (var i = 0; i < rows.length; i++) {
-				var arr = rows[i].split('\t');
-				// returns full name and takes care of when person has more than
-				// two names
-				function a() {
-					var name = "";
-					for (var i = 0; i < arr.length; i++) {
-						name = name + arr[i] + " ";
-					}
-					return name;
-				}
-				obj.push(a());
-			}
-			$scope.objJoin = obj.join(",");
-			$scope.submitUserInput($scope.objJoin);
-		};
-
 		// To be used to hide the side icon before printing
 		$scope.showListIcon = true;
 		$scope.printGuestList = function() {
@@ -189,31 +112,6 @@ function($scope, $http, $localStorage, $timeout, $firebaseObject, $firebaseArray
 			popupWin.document.open();
 			popupWin.document.write('<html><link rel="stylesheet" media="all" href="css/style.css"><link href="css/limestone.css" rel="stylesheet"  media="all"></head><body onload="window.print()">' + printContents + '</html>');
 			popupWin.document.close();
-		};
-
-		$scope.ran = function() {
-			$scope.rand = Math.random().toString().slice(2, 7);
-		};
-
-		$scope.addByPasting = true;
-
-		$scope.restoreFromBackUp = function() {
-			if ($scope.$storage.backUpGuestList.length > 0) {
-				$scope.$storage.guestsList = {};
-				Array.prototype.push.apply($scope.$storage.guestsList, $scope.$storage.backUpGuestList);
-			}else {
-				
-			}
-		};
-
-		$scope.listreplace = true;
-		$scope.replaceList = function() {
-			$scope.listreplace = !$scope.listreplace;
-		};
-
-		$scope.popolateReplace = true;
-		$scope.replacePop = function() {
-			$scope.popolateReplace = !$scope.popolateReplace;
 		};
 
 		$scope.printpage = function() {
@@ -242,24 +140,18 @@ function($scope, $http, $localStorage, $timeout, $firebaseObject, $firebaseArray
 			$timeout(function() {
 				$scope.guestAddFeedback = false;
 			}, 5000);
-		};
-
-		//
-		// $scope.checkIns = "0";
-		// $scope.noCheckIns = "0";
-
-		$scope.checkIns = function() {
-			var checkIns = 0;
-			for (var i = 0; i < $scope.$storage.guestsList.length; i++) {
-				if ($scope.$storage.guestsList[i].checkedIn == true) {
-					checkIns = checkIns + 1;
-				}
-			}
-			return checkIns;
-		};
-
-		$scope.noCheckIns = function() {
-			return $scope.$storage.guestsList.length - $scope.checkIns() - 2;
+		}; 
+		
+		$scope.el = {"employees":[{
+				"firstName" : "John",
+				"lastName" : "Doe"
+			}, {
+				"firstName" : "Anna",
+				"lastName" : "Smith"
+			}, {
+				"firstName" : "Peter",
+				"lastName" : "Jones"
+			}]
 		};
 
 		$scope.randomName = function() {

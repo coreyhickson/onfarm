@@ -1,244 +1,112 @@
 <div ng-include="'partials/nav.html'"></div>
-<section class="guestinfo uofs-section container-fluid" id="populatePage">
+<section class="guestinfo uofs-section container-fluid" id="">
 	<br />
-	<div class="back_div pull-left ">
-		<a type="button" class="btn btn-default btn-xs" ng-href="#/home">&laquo; Home</a>
-	</div>
-	<div class="pull-right">
-		<a type="button" class="btn btn-default btn-xs" ng-href="#/guestList">Guest List &raquo;</a>
-	</div>
-	<h1 class="text-center uofs-page-title"><a>Attendees</a></h1>
-	<p>
-		You can add attendees by pasting columns of names from excel file, generating tickets orby typing their names in the field.
-	</p>
-	<div class="btn-group center-block row text-center" data-toggle="buttons" style="">
-		<label class="btn btn-primary btn-xs col-md-2 pull-left active" ng-click="addByPasting=true;addWithNum=false;addWithName=false" >
-			<input type="radio" name="options" id="option1">
-			Paste From Excel </label>
-		<label class="btn btn-primary btn-xs col-md-2 pull-left " ng-click="addWithNum=true;addWithName=false;addByPasting=false">
-			<input type="radio" name="options" id="option2">
-			By ticket Number </label>
-		<label class="btn btn-primary btn-xs col-md-2 pull-left " ng-click="addWithName=true;addWithNum=false;addByPasting=false;" >
-			<input type="radio" name="options" id="option3">
-			By Guest Name </label>
-	</div>
-	<div class="addByPasting  animated slideInDown" ng-show="addByPasting">
-		<div class="row dataFieldContainer center-block  text-center">
-			<textarea ng-model="dataFieldExcel" placeholder="Copy and paste the excel columns containing the names,  Leave out the column heading, and click 'Add Guests'." 
-		class="dataField form-control" type="textarea" style="height: 250px !important; " ></textarea>
+	<h1 class="text-center uofs-page-title"><a>Home</a></h1>
+	<br />
+	<div class="addByPasting  animated slideInDown col-lg-3 col-md-3 col-xs-12 categories" >
+		<div class="row text-center">
+			<h3>Crop</h3>
 		</div>
-		<div class=" populate_div  panel panel-default" data-toggle="buttons" style="padding-bottom: 2%;">
-			<div class="panel-body">
-				<div class="pull-right">
-					<button ng-model="btnText" type="button" ng-show="dataFieldExcel.length >=1"
-					class="btn btn-primary " ng-click="addPastedExcel();dataFieldExcel = '';guestAddFeedback=true;guestAddMsg(); ">
-						{{listBtnText}}
-					</button>
-					<button ng-model="btnText" type="button" ng-show="dataFieldExcel.length >=1"
-					class="btn btn-primary btn-xs" ng-click="clearField(dataFieldExcel); dataFieldExcel = ' ' ">
-						Clear Field
-					</button>
+		<div class="text-justify">
+			<div class="panel-group" id="accordion">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title"><a  data-target="#collapseOne" data-toggle="collapse" data-parent="#accordion" >Barley Six-row spring</a></h4>
+					</div>
+					<div id="collapseOne" class="panel-collapse collapse in">
+						<ul class="list-group">
+							<li class="list-group-item">
+								Cras justo odio
+							</li>
+							<li class="list-group-item">
+								Dapibus ac facilisis in
+							</li>
+							<li class="list-group-item">
+								Morbi leo risus
+							</li>
+							<li class="list-group-item">
+								Porta ac consectetur ac
+							</li>
+							<li class="list-group-item">
+								Vestibulum at eros
+							</li>
+						</ul>
+					</div>
 				</div>
-				<div class="pull-left" style="width: 50%;">
-					<h4 class="pull-left"> &#926; You've added {{$storage.guestsList.length-2}} Guests &#926;</h4>
-					<a class="pull-right"   ng-show="$storage.guestsList.length-2>0" ng-click="guestAddFeedback = !guestAddFeedback">
-					<button type="button" class="btn btn-primary checkInBtn btn-xs ">
-						<span ng-show="guestAddFeedback">Hide Guests</span>
-						<span ng-show="!guestAddFeedback">View Guests</span>
-					</button> </a>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title"><a  data-target="#collapseTwo" data-toggle="collapse" data-parent="#accordion"> Barley Two Row</a></h4>
+					</div>
+					<div id="collapseTwo" class="panel-collapse collapse">
+						<ul class="list-group">
+							<li class="list-group-item">
+								Cras justo odio
+							</li>
+							<li class="list-group-item">
+								Dapibus ac facilisis in
+							</li>
+							<li class="list-group-item">
+								Morbi leo risus
+							</li>
+							<li class="list-group-item">
+								Porta ac consectetur ac
+							</li>
+							<li class="list-group-item">
+								Vestibulum at eros
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title"><a  data-target="#collapseThree" data-toggle="collapse" data-parent="#accordion"> Bean, Pinto</a></h4>
+					</div>
+					<div id="collapseThree" class="panel-collapse collapse">
+						<ul class="list-group">
+							<li class="list-group-item">
+								Cras justo odio
+							</li>
+							<li class="list-group-item">
+								Dapibus ac facilisis in
+							</li>
+							<li class="list-group-item">
+								Morbi leo risus
+							</li>
+							<li class="list-group-item">
+								Porta ac consectetur ac
+							</li>
+							<li class="list-group-item">
+								Vestibulum at eros
+							</li>
+						</ul>
+					</div>
 				</div>
 			</div>
-			<div class="guest cf text-center row" ng-repeat="item in $storage.guestsList | filter: guestSearch | orderBy: guestOrder:direction"
-			ng-show="guestAddFeedback">
-				<div class="col-xs-2 col-md-2" style="padding-left: 5%;">
-					<a ng-click="removeElement($storage.guestsList, $storage.guestsList.indexOf(item))"> <i type="button" class="close pull-left" aria-hidden="true" ng-show="showListIcon">{{item.icon}}</i></a>
-					<span class=" text-center">{{$index+1}}</span>
-				</div>
-				<div class="col-xs-5 col-md-5 ">
-					<h4>{{item.name}}</h4>
-				</div>
-				<div class="col-xs-5 col-md-5">
-					{{item.guestStatus}}
-				</div>
-			</div>
 		</div>
 	</div>
-	<div class="addWithNum  animated slideInDown" ng-show="addWithNum">
+	<div class="addWithNum  animated slideInDown  col-lg-9 col-md-9 col-xs-12">
+		<div class="row text-center">
+			<h3>Reviews</h3>
+		</div>
 		<div class="row dataFieldContainer center-block  text-center">
 			<textarea ng-model="dataFieldNum" placeholder="Select options below and click 'Generate Number'. Numbers will show up here. You can also just type or copy and paste a bunch of numbers/characters delimited by comma and use them as your ticket number." 
 		class="dataField form-control" type="textarea" style="height: 250px !important; "></textarea>
 		</div>
-		<div class=" populate_div  panel panel-default" data-toggle="buttons" style="padding-bottom: 2%;">
-			<div class="panel-body">
-				<div class=" center-block col-xs-12">
-					<form role="form">
-						<div class="form-group col-md-3 text-center center-block">
-							<label >Number of digits </label>
-							<input class="form-control" placeholder="Max 10 eg. 6 for AXB105" type="text"
-							ng-model="$storage.ticketDigits" >
-						</div>
-						<div class="form-group col-md-3 text-center">
-							<label >Total Tickets to generate</label>
-							<input  class="form-control"  placeholder="One per guest/group" type="text"
-							ng-model="$storage.totalTickets" ng-required="true">
-						</div>
-						<div class="form-group col-md-3 text-center">
-							<label >Prefix</label>
-							<input class="form-control"  placeholder="eg ABC to get ABC1234" type="text"
-							ng-model="$storage.prefix">
-						</div>
-						<div class="form-group col-md-3 text-center">
-							<br />
-							<button ng-model="btnText" type="button"
-							class="btn btn-primary checkInBtn " ng-click="generateTicketNums(); ">
-								Generate Number
-							</button>
-						</div>
-					</form>
-				</div>
-				<div class="pull-right">
-					<button ng-model="btnText" type="button" ng-show="dataFieldNum.length >=1"
-					class="btn btn-primary " ng-click="submitUserInput(dataFieldNum);dataFieldNum = '';guestAddFeedback=true;guestAddMsg();  ">
-						Add Guests
-					</button>
-					<button ng-model="btnText" type="button" ng-show="dataFieldNum.length >=1"
-					class="btn btn-primary btn-xs" ng-click="clearField(dataFieldNum); dataFieldNum = '' ">
-						Clear Field
-					</button>
-				</div>
-				<div class="pull-left" style="width: 50%;">
-					<h4 class="pull-left"> &#926; You've added {{$storage.guestsList.length-2}} Guests &#926;</h4>
-					<a class="pull-right"   ng-show="$storage.guestsList.length-2>0" ng-click="guestAddFeedback = !guestAddFeedback">
-					<button type="button" class="btn btn-primary checkInBtn btn-xs ">
-						<span ng-show="guestAddFeedback">Hide Guests</span>
-						<span ng-show="!guestAddFeedback">View Guests</span>
-					</button> </a>
-				</div>
-			</div>
-			<div class="guest cf text-center row" ng-repeat="item in $storage.guestsList | filter: guestSearch | orderBy: guestOrder:direction"
-			ng-show="guestAddFeedback">
-				<div class="col-xs-2 col-md-2" style="padding-left: 5%;">
-					<a ng-click="removeElement($storage.guestsList, $storage.guestsList.indexOf(item))"> <i type="button" class="close pull-left" aria-hidden="true" ng-show="showListIcon">{{item.icon}}</i></a>
-					<span class=" text-center">{{$index+1}}</span>
-				</div>
-				<div class="col-xs-5 col-md-5 ">
-					<h4>{{item.name}}</h4>
-				</div>
-				<div class="col-xs-5 col-md-5">
-					{{item.guestStatus}}
-				</div>
-			</div>
-		</div>
 	</div>
-	<div class="addWithName  animated slideInDown" ng-show="addWithName">
-		<div class="row dataFieldContainer center-block  text-center">
-			<textarea ng-model="dataField" placeholder="Enter the names of guests seperated with comma and click 'Add Guests'" 
-		class="dataField form-control" type="textarea" style="height: 250px !important; "></textarea>
-		</div>
-		<div class=" populate_div  panel panel-default" data-toggle="buttons" style="padding-bottom: 2%;">
-			<div class="panel-body">
-				<div class="pull-right">
-					<button ng-model="btnText" type="button" ng-show="dataField.length >=1"
-					class="btn btn-primary checkInBtn " ng-click="submitUserInput(dataField);dataField = '';guestAddFeedback=true;guestAddMsg();  ">
-						{{listBtnText}}
-					</button>
-					<button ng-model="btnText" type="button" ng-show="dataField.length >=1"
-					class="btn btn-primary btn-xs" ng-click="clearField(dataField); dataField = ' ' ">
-						Clear Field
-					</button>
-					<!-- <button ng-model="btnText" type="button"
-					class="btn btn-primary " ng-click="randomName()">
-					Random Name
-					</button> -->
-				</div>
-				<div class="pull-left" style="width: 50%;">
-					<h4 class="pull-left"> &#926; You've added {{$storage.guestsList.length-2}} Guests &#926;</h4>
-					<a class="pull-right"   ng-show="$storage.guestsList.length-2>0" ng-click="guestAddFeedback = !guestAddFeedback">
-					<button type="button" class="btn btn-primary checkInBtn btn-xs ">
-						<span ng-show="guestAddFeedback">Hide Guests</span>
-						<span ng-show="!guestAddFeedback">View Guests</span>
-					</button> </a>
-				</div>
-			</div>
-			<div class="guest cf text-center row" ng-repeat="item in $storage.guestsList | filter: guestSearch | orderBy: guestOrder:direction"
-			ng-show="guestAddFeedback">
-				<div class="col-xs-2 col-md-2" style="padding-left: 5%;">
-					<a ng-click="removeElement($storage.guestsList, $storage.guestsList.indexOf(item))"> <i type="button" class="close pull-left" aria-hidden="true" ng-show="showListIcon">{{item.icon}}</i></a>
-					<span class=" text-center">{{$index+1}}</span>
-				</div>
-				<div class="col-xs-5 col-md-5 ">
-					<h4>{{item.name}}</h4>
-				</div>
-				<div class="col-xs-5 col-md-5">
-					{{item.guestStatus}}
-				</div>
-			</div>
-		</div>
+	
+	<!-- For alpha nav -->
+	<!-- <div class="addWithName  animated slideInDown  col-lg-3 col-md-3 col-xs-12" >
+	<div class="row dataFieldContainer center-block  text-center">
+	<textarea ng-model="dataField" placeholder="Enter the names of guests seperated with comma and click 'Add Guests'"
+	class="dataField form-control" type="textarea" style="height: 250px !important; "></textarea>
 	</div>
+	</div> -->
 	<div>
 		<!-- {{$storage.x}} -->
 		<!-- <p >{{dateString()}}</p> -->
 		<button ng-hide="true" ng-click="$storage.$reset({ })">
 			Clear localStorage
 		</button>
-	</div>
-	<div class="pull-left">
-		<a type="button" class="btn btn-primary  btn-xs "  ng-href="#/tickets">&laquo; Create Tickets </a>
-	</div>
-	<div class="pull-right">
-		<a type="button" class="btn btn-primary  btn-xs " ng-click="backUpBtn()">{{backUpTxt()}} &raquo;</a>
-	</div>
-	<div class="clearfix ">
-		<div ng-show="backUp" class="row ">
-			<hr />
-			<div class="col-xs-4 col-md-4">
-				<p>
-					This is your guest list from the last time you removed all guests from Eventstone.
-				</p>
-				<p>
-					You currently have {{$storage.guestsList.length-2}} guests in your guest list.
-				</p>
-				<p>
-					There are {{$storage.backUpGuestList.length}} guests in the back up list.
-				</p>
-				<p ng-show="$storage.guestsList.length != $storage.backUpGuestList.length">
-					<span ng-show="popolateReplace"> You can restore from from this back up.
-						<button type="button" class="btn btn-primary btn-xs " ng-click="replacePop()">
-							Restore
-						</button></span>
-					<span ng-show="!popolateReplace">This would remove all current guests. Are you sure?
-						<button type="button" class="btn btn-primary btn-xs " ng-click="replacePop(); restoreFromBackUp()">
-							Yes. Replace guests.
-						</button></span>
-				</p>
-			</div>
-			<div class="col-xs-1 col-md-1" ></div>
-			<ul class="guestlist col-xs-7 col-md-7 ">
-				<div class="text-center row" >
-					<div class="col-xs-4 col-md-4">
-						<h3>S/N</h3>
-					</div>
-					<div class="col-xs-8 col-md-8">
-						<h3>Name</h3>
-					</div>
-				</div>
-				<li class="guest cf row" ng-repeat="item in $storage.backUpGuestList | filter: guestSearch | orderBy: guestOrder:direction"
-				>
-					<a >
-					<div class="info">
-						<div class="row">
-							<div class="col-xs-4 col-md-4">
-								<a ng-click="removeElement($storage.backUpGuestList, $storage.backUpGuestList.indexOf(item))"> <i type="button" class="close pull-left" aria-hidden="true" >{{item.icon}}</i></a>
-								<span class=" text-center">{{$index+1}}</span>
-							</div>
-							<div class="col-xs-8 col-md-8">
-								<h4>{{item.name}}</h4>
-							</div>
-						</div>
-					</div> </a>
-				</li>
-			</ul>
-		</div>
 	</div>
 </section>
 

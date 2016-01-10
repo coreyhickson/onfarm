@@ -433,19 +433,6 @@ form .progress {
 	padding-left: 10% !important;
 }
 
-/*.nameBadgePrinting {
-	transform:  rotate( -90deg ) ;
-}*/
-/*.badgeBack {
-	transform-origin: right center;
-	transform:  rotateX( -180deg ) ;
-}*/
-.a {
-	
-    -ms-transform: rotate(20deg); /* IE 9 */
-    -webkit-transform: rotate(20deg); /* Safari */
-    transform: rotate(20deg);
-}
 
 .dropdown span {
 	/*font-size: 30px;*/
@@ -505,4 +492,12 @@ form .progress {
 #livePage {
 	/*border-left: thick solid rgba(255, 0, 0, 1);
 	border-right: thick solid rgba(255, 0, 0, 1);*/
+}
+.navbar-brand
+{
+    position: absolute;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    margin: auto;
 }
