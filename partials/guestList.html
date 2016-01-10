@@ -1,0 +1,91 @@
+<div ng-include="'partials/nav.html'"></div>
+<section class="guestpage container-fluid uofs-section animated slideInDown" id="guestListPage">
+	<div class=" pull-left" >
+		<a class="btn btn-default btn-xs" type="button" ng-href="#/populate">&laquo; Back</a>
+	</div>
+	<div class=" pull-right" >
+		<a class="btn btn-default btn-xs" type="button" ng-href="#/tickets">&laquo; Design Tickets</a>
+	</div>
+	<div class="guestlist row  text-center center-block" >
+		<div class="row">
+			<h1 class="text-center uofs-page-title"><a>List</a></h1>
+			<form class="search  text-center form col-xs-12 col-md-10">
+				<input ng-model="guestSearch" placeholder="Search for a guest"
+				autofocus="autofocus" class="searchBar form-control" >
+			</form>
+			<p style="" class="col-xs-12 col-md-2 pull-right">
+				<button  ng-model="btnText" type="button" class="btn btn-warning btn-xs"
+				ng-show="$storage.guestsList.length > 0 <= 0" ng-click="deleteStored()">
+					Remove All Guests
+				</button>
+				<button class="btn btn-primary btn-xs" ng-click="printGuestList()">
+					Print Guestlist
+				</button>
+			</p>
+		</div>
+		<br class="clearfix"/>
+		<div id="GList" class="row">
+			<!-- <div class="row text-center center-block">
+			<h3>
+			Summary</h3>
+			<br />
+			<h4 class="col-xs-6 col-md-6">Checked in: {{checkIns()}} </h4>
+			<h4 class="col-xs-6 col-md-6">Not Checked in: {{noCheckIns()}} </h4>
+			<br />
+			</div> -->
+			<div class="text-center " >
+				<div class="col-xs-1 col-md-1">
+					<h3>S/N</h3>
+				</div>
+				<div class="col-xs-6 col-md-6">
+					<h3>Name/Ticket Number</h3>
+				</div>
+				<div class="col-xs-5 col-md-5">
+					<h3>Status</h3>
+				</div>
+			</div>
+			<div class="guest cf text-center row" ng-repeat="item in $storage.guestsList | filter: guestSearch | orderBy: guestOrder:direction">
+				<a>
+				<div class="info">
+					<div class="row guestInList" style="border-bottom: thin dashed gray;">
+						<div class="col-xs-1 col-md-1">
+							<a ng-click="removeElement($storage.guestsList, $storage.guestsList.indexOf(item))"> <i type="button" class="close pull-left" aria-hidden="true" ng-show="showListIcon">{{item.icon}}</i></a>
+							<span class=" text-center">{{$index+1}}</span>
+						</div>
+						<div class="col-xs-6 col-md-6 ">
+							<h4>{{item.name}}</h4>
+						</div>
+						<div class="col-xs-5 col-md-5">
+							{{item.guestStatus}}
+						</div>
+					</div>
+				</div> </a>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="row">
+			<form class="search  text-center form col-xs-12 col-md-10"></form>
+			<p style="" class="col-xs-12 col-md-2 pull-right text-center">
+				<button class="btn btn-primary btn-xs" ng-click="printGuestList()">
+					Print Guestlist
+				</button>
+				<button  ng-model="btnText" type="button" class="btn btn-warning btn-xs"
+				ng-show="$storage.guestsList.length > 0 <= 0" ng-click="deleteStored()">
+					Remove All Guests
+				</button>
+			</p>
+		</div>
+		<p class="row text-center " ng-show="$storage.guestsList.length != $storage.backUpGuestList.length">
+			<span ng-show="listreplace"> Did you mistakenly delete your guest list? You can restore it from back up.
+				<button type="button" class="btn btn-primary btn-xs " ng-click="replaceList()">
+					Restore from Back Up
+				</button></span>
+			<span ng-show="!listreplace">This would remove all current guests. Are you sure?
+				<button type="button" class="btn btn-primary btn-xs " ng-click="replaceList(); restoreFromBackUp()">
+					Yes. Replace guests.
+				</button></span>
+		</p>
+	</div>
+</section>
+
